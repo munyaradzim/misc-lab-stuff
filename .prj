@@ -1,0 +1,1 @@
+verilog mylib lc4_alu.v lc4_divider.v lc4_cla.v testbench_lc4_alu.v

@@ -1,0 +1,34 @@
+#-----------------------------------------------------------
+# xsim v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Feb 17 19:41:47 2021
+# Process ID: 21432
+# Current directory: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu
+# Command line: xsim -mode tcl -source {xsim.dir/snapshot.sim/xsim_script.tcl}
+# Log file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.log
+# Journal file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/snapshot.sim/xsim_script.tcl
+# xsim {snapshot.sim} -wdb {sim.wdb} -autoloadwcfg -runall -stats
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+run -all
+[gp] error at line 0009: gin:1000 pin:0000 cin:0 produced gout:0 pout:0 cout:000 instead of gout:1 pout:0 cout:000
+[gp] error at line 0010: gin:1001 pin:0000 cin:0 produced gout:0 pout:0 cout:001 instead of gout:1 pout:0 cout:001
+[gp] error at line 0011: gin:1010 pin:0000 cin:0 produced gout:0 pout:0 cout:010 instead of gout:1 pout:0 cout:010
+[gp] error at line 0012: gin:1011 pin:0000 cin:0 produced gout:0 pout:0 cout:011 instead of gout:1 pout:0 cout:011
+[gp] error at line 0013: gin:1100 pin:0000 cin:0 produced gout:0 pout:0 cout:100 instead of gout:1 pout:0 cout:100
+[gp] error at line 0014: gin:1101 pin:0000 cin:0 produced gout:0 pout:0 cout:101 instead of gout:1 pout:0 cout:101
+[gp] error at line 0015: gin:1110 pin:0000 cin:0 produced gout:0 pout:0 cout:110 instead of gout:1 pout:0 cout:110
+[gp] error at line 0016: gin:1111 pin:0000 cin:0 produced gout:0 pout:0 cout:111 instead of gout:1 pout:0 cout:111
+[gp] error at line 0025: gin:1000 pin:0001 cin:0 produced gout:0 pout:0 cout:000 instead of gout:1 pout:0 cout:000
+[gp] error at line 0026: gin:1001 pin:0001 cin:0 produced gout:0 pout:0 cout:001 instead of gout:1 pout:0 cout:001
+[gp] error at line 0027: gin:1010 pin:0001 cin:0 produced gout:0 pout:0 cout:010 instead of gout:1 pout:0 cout:010
+[gp] error at line 0028: gin:1011 pin:0001 cin:0 produced gout:0 pout:0 cout:011 instead of gout:1 pout:0 cout:011
+[gp] error at line 0029: gin:1100 pin:0001 cin:0 produced gout:0 pout:0 cout:100 instead of gout:1 pout:0 cout:100
+[gp] error at line 0030: gin:1101 pin:0001 cin:0 produced gout:0 pout:0 cout:101 instead of gout:1 pout:0 cout:101
+exit
+INFO: Simulation Memory Usage: 118004 KB (Peak: 179440 KB)
+INFO: Simulation CPU Usage: 0 ms
+INFO: [Common 17-206] Exiting xsim at Wed Feb 17 19:41:54 2021...
