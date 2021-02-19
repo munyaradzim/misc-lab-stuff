@@ -12,18 +12,20 @@ module lc4_alu(input  wire [15:0] i_insn,
 
       /*** YOUR CODE HERE ***/
       wire [15:0] arith, trap, jsr, cmp, logic, rti, shift, hiconst, cla, const, jmp;
+      wire [15:0] instr;
+      assign instr = i_insn;
 
       assign rti = i_r1data;
-      assign trap = {8{1'd0}, instr[7:0]} | 16'h8000;
-      assign const = i_insn[8] ? {7{1'd1}, instr[8:0]} : {7{1'd0}, instr[8:0]};
+      assign trap = {{8{1'd0}}, i_insn[7:0]} | 16'h8000;
+      assign const = i_insn[8] ? {{7{1'd1}}, instr[8:0]} : {{7{1'd0}}, instr[8:0]};
       jmp_mux j0(.instr(i_insn), .rs(i_r1data), .cla(cla), .Out(jmp));
       arith_mux a0(.instr(i_insn), .rs(i_r1data), .rt(i_r2data), .cla(cla), .Out(arith));
-      jsr_mux j1(.instr(i_insn), .pc(i_pc), .rs(i_r1data), .Out(jsr));
+      jsr_mux j1(.instr(i_insn[11:0]), .pc(i_pc), .rs(i_r1data), .Out(jsr));
       cmp_mux c0(.instr(i_insn), .rs(i_r1data), .rt(i_r2data), .Out(cmp));
       logic_mux l0(.instr(i_insn), .rs(i_r1data), .rt(i_r2data), .Out(logic));
-      shft_mux s0(.instr(i_insn), .rs(i_r1data), .Out(shift));
+      shift_mux s0(.instr(i_insn), .rs(i_r1data), .rt(i_r2data), .Out(shift));
       hiconst_calc h0(.instr(i_insn), .rd(i_r1data), .Out(hiconst));
-      cla_mux c1(.instr(i_insn), .rs(.i_r1data), .rt(i_r2data), .pc(i_pc), .Out(cla));
+      cla_mux c1(.instr(i_insn), .rs(i_r1data), .rt(i_r2data), .pc(i_pc), .Out(cla));
 
       alu_final a1(.instr(i_insn), .branch(cla), .out_arith_mux(arith), .out_cmp_mux(cmp),
                   .jsr_mux(jsr), .logic_mux(logic), .ldr_cla_mux(cla), .str_cla_mux(cla), .r1_rti(rti), .const(const),
@@ -71,9 +73,9 @@ endmodule
 
 
 
-module jsr_mux (input wire [15:0] pc, input wire [15:0] rs, input wire [10:0] instr, output wire [15:0] Out);
+module jsr_mux (input wire [15:0] pc, input wire [15:0] rs, input wire [11:0] instr, output wire [15:0] Out);
 
-      wire jsr_calc = (pc & 16'h8000) | ((instr[10] ? {5{1'd1}, instr[10:0]}: {5{1'd0}, instr[10:0]}) << 4) //sign ext
+      wire jsr_calc = (pc & 16'h8000) | ((instr[10] ? {{5{1'd1}}, instr[10:0]}: {{5{1'd0}}, instr[10:0]}) << 4); //sign ext
       assign Out = instr[11] ? jsr_calc : rs;
 
 endmodule
@@ -84,7 +86,7 @@ module cmp_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:0]
       wire [15:0] rt_val, rs_val;
 
       //rs val is doing what cmp_mux_a does
-      assign rt_val = (instr[8:7] == 2'd0) ? rs :
+      assign rs_val = (instr[8:7] == 2'd0) ? rs :
                   (instr[8:7] == 2'd1) ? $unsigned(rs) :
                   (instr[8:7] == 2'd2) ? rs :
                   $unsigned(rs);
@@ -92,8 +94,8 @@ module cmp_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:0]
       //rt val is doing what cmp_mux_b does
       assign rt_val = (instr[8:7] == 2'd0) ? rt :
                   (instr[8:7] == 2'd1) ? $unsigned(rt) :
-                  (instr[8:7] == 2'd2) ? (instr[6] ? {9{1'd1}, instr[6:0]} : {9{1'd0}, instr[6:0]}) :
-                  {9 {1'd0}, instr[6:0]};
+                  (instr[8:7] == 2'd2) ? (instr[6] ? {{9{1'd1}}, instr[6:0]} : {{9{1'd0}}, instr[6:0]}) :
+                  {{9 {1'd0}}, instr[6:0]};
 
       wire less_than_comp = (rs_val < rt_val);
       wire equal_comp = (rs_val == rt_val);
@@ -113,7 +115,7 @@ module logic_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:
       wire or_calc = rs | rt;
       wire not_calc = ~rs;
       wire xor_calc = rt ^ rs;
-      wire and_imm = rs & (instr[4] ? {11{1'd1}, instr[4:0]}: {11{1'd0}, instr[4:0]});
+      wire and_imm = rs & (instr[4] ? {{11{1'd1}}, instr[4:0]}: {{11{1'd0}}, instr[4:0]});
 
       assign Out = (instr[5:3] == 3'd0) ? and_calc :
                   (instr[5:3] == 3'd1) ? not_calc :
@@ -125,15 +127,15 @@ endmodule
 
 
 
-module shift_mux (input wire [15:0] instr, input wire [15:0] rs, output wire [15:0] Out);
+module shift_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:0] rt, output wire [15:0] Out);
 
-      wire uimm4 = {12{1'b0}, instr[3:0]};
+      wire uimm4 = {{12{1'b0}}, instr[3:0]};
       wire sll_calc = rs << uimm4;
       wire sra_calc = rs >>> uimm4;
       wire srl_calc = rs >> uimm4;
 
-      wire [15:0] mod_calc; 
-      lc4_divider div(.i_divisor(rt), .i_dividend(rs), .o_remainder(mod_calc), .o_quotient());
+      wire [15:0] mod_calc, dump; 
+      lc4_divider div(.i_divisor(rt), .i_dividend(rs), .o_remainder(mod_calc), .o_quotient(dump));
 
       assign Out = (instr[5:4] == 2'd0) ? sll_calc :
                   (instr[5:4] == 2'd1) ? sra_calc :
@@ -150,7 +152,7 @@ endmodule
 
 
 module hiconst_calc (input wire [15:0] instr, input wire [15:0] rd, output wire [15:0] Out);
-      wire uimm8 = {8{1'b0}, instr[7:0]};
+      wire uimm8 = {{8{1'b0}}, instr[7:0]};
       assign Out = (rd & 16'hFF) | (uimm8 << 8);
 
 endmodule
@@ -160,10 +162,10 @@ endmodule
 module cla_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:0] rt,
                 input wire [15:0] pc, output wire [15:0] Out);
       
-      wire imm9 = instr[8] ? {7{1'd1}, instr[8:0]} : {7{1'd0}, instr[8:0]};
-      wire imm5 = instr[4] ? {11{1'd1}, instr[4:0]}: {11{1'd0}, instr[4:0]};
-      wire imm6 = instr[5] ? {10{1'd1}, instr[5:0]}: {10{1'd0}, instr[5:0]};
-      wire imm11 = instr[10] ? {5{1'd1}, instr[10:0]}: {5{1'd0}, instr[10:0]};
+      wire imm9 = instr[8] ? {{7{1'd1}}, instr[8:0]} : {{7{1'd0}}, instr[8:0]};
+      wire imm5 = instr[4] ? {{11{1'd1}}, instr[4:0]}: {{11{1'd0}}, instr[4:0]};
+      wire imm6 = instr[5] ? {{10{1'd1}}, instr[5:0]}: {{10{1'd0}}, instr[5:0]};
+      wire imm11 = instr[10] ? {{5{1'd1}}, instr[10:0]}: {{5{1'd0}}, instr[10:0]};
 
       wire cla_carry = (instr[15:12] == 4'b0) ? 16'b1 : //branch or nop
                   (instr[15:12] == 4'd12) ? 16'b1 : //jmp
@@ -186,7 +188,7 @@ module cla_mux (input wire [15:0] instr, input wire [15:0] rs, input wire [15:0]
                         (instr[15:11] == 5'b11001) ? imm11 : //jmp
                         16'b0;
 
-      cla_16 c0(.a(cla_input_a), .b(cla_input_b), .cin(cla_carry), .sum(Out));
+      cla16 c0(.a(cla_input_a), .b(cla_input_b), .cin(cla_carry), .sum(Out));
 
 endmodule
 

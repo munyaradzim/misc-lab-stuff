@@ -4,6 +4,15 @@ Running: /home1/c/cis371/software/Vivado/2017.4/bin/unwrapped/lnx64.o/xelab -cc 
 Multi-threading is on. Using 6 slave threads.
 INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_alu.v" into library mylib
 INFO: [VRFC 10-311] analyzing module lc4_alu
+INFO: [VRFC 10-311] analyzing module alu_final
+INFO: [VRFC 10-311] analyzing module arith_mux
+INFO: [VRFC 10-311] analyzing module jsr_mux
+INFO: [VRFC 10-311] analyzing module cmp_mux
+INFO: [VRFC 10-311] analyzing module logic_mux
+INFO: [VRFC 10-311] analyzing module shift_mux
+INFO: [VRFC 10-311] analyzing module jmp_mux
+INFO: [VRFC 10-311] analyzing module hiconst_calc
+INFO: [VRFC 10-311] analyzing module cla_mux
 INFO: [VRFC 10-2263] Analyzing Verilog file "/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_divider.v" into library mylib
 INFO: [VRFC 10-311] analyzing module lc4_divider
 INFO: [VRFC 10-311] analyzing module lc4_divider_one_iter
@@ -20,5 +29,6 @@ Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module mylib.gp4
+Compiling module mylib.cla16
 Compiling module mylib.test_alu
 Built simulation snapshot snapshot.sim

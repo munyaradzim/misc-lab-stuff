@@ -2,12 +2,19 @@
 # xsim v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Wed Feb 17 18:55:00 2021
-# Process ID: 13609
+# Start of session at: Fri Feb 19 16:55:05 2021
+# Process ID: 25436
 # Current directory: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu
 # Command line: xsim -mode tcl -source {xsim.dir/snapshot.sim/xsim_script.tcl}
 # Log file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.log
 # Journal file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.jou
 #-----------------------------------------------------------
 source xsim.dir/snapshot.sim/xsim_script.tcl
+# xsim {snapshot.sim} -wdb {sim.wdb} -autoloadwcfg -runall -stats
+Vivado Simulator 2017.4
+Time resolution is 1 ps
 run -all
+exit
+INFO: Simulation Memory Usage: 118040 KB (Peak: 179476 KB)
+INFO: Simulation CPU Usage: 40 ms
+INFO: [Common 17-206] Exiting xsim at Fri Feb 19 16:55:12 2021...

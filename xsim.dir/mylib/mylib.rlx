@@ -2,9 +2,9 @@
 2017.4
 Dec 15 2017
 20:57:24
-/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_alu.v,1613605616,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_divider.v,,lc4_alu,,mylib,,,,,,
-/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_cla.v,1613609097,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/testbench_lc4_alu.v,,cla16;gp1;gp4;gpn,,mylib,,,,,,
-/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_divider.v,1611950996,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_cla.v,,lc4_divider;lc4_divider_one_iter,,mylib,,,,,,
+/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_alu.v,1613772831,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_divider.v,,alu_final;arith_mux;cla_mux;cmp_mux;hiconst_calc;jmp_mux;jsr_mux;lc4_alu;logic_mux;shift_mux,,mylib,,,,,,
+/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_cla.v,1613771685,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/testbench_lc4_alu.v,,cla16;gp1;gp4;gpn,,mylib,,,,,,
+/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_divider.v,1613772419,verilog,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_cla.v,,lc4_divider;lc4_divider_one_iter,,mylib,,,,,,
 /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_prettyprint_errors.v,1611950996,verilog,,,,,,,,,,,,
 /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/print_points.v,1611950996,verilog,,,,,,,,,,,,
-/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/testbench_lc4_alu.v,1613605102,verilog,,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_prettyprint_errors.v;/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/print_points.v,test_alu,,mylib,,,,,,
+/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/testbench_lc4_alu.v,1613771778,verilog,,,/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/lc4_prettyprint_errors.v;/mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/print_points.v,test_alu,,mylib,,,,,,

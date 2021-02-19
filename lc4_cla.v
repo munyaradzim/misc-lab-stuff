@@ -60,6 +60,24 @@ module cla16
    input wire         cin,
    output wire [15:0] sum);
 
+   wire [16:0] cout;
+   wire [15:0] gin, pin;
+
+   wire g_1, p_1, g_2, p_2, g_3, p_3, g_4, p_4;
+   assign cout[0] = cin;
+   assign gin[15:0] = a & b;
+   assign pin[15:0] = a | b;
+   gp4 low(.gin(gin[3:0]), .pin(pin[3:0]), .cin(cin), .gout(g_1), .pout(p_1), .cout(cout[3:1]));
+   assign cout[4] = g_1 | p_1 & cout[3];
+   gp4 mid (.gin(gin[7:4]), .pin(pin[7:4]), .cin(cout[4]), .gout(g_2), .pout(p_2), .cout(cout[7:5]));
+   assign cout[8] = g_2 | p_2 & cout[6];
+   gp4 high(.gin(gin[11:8]), .pin(pin[11:8]), .cin(cout[8]), .gout(g_3), .pout(p_3), .cout(cout[11:9]));
+   assign cout[12] = g_3 | p_3 & cout[10];
+   gp4 super_high(.gin(gin[15:12]), .pin(pin[15:12]), .cin(cout[12]), .gout(g_4), .pout(p_4), .cout(cout[15:13]));
+   assign cout[16] = g_4 | p_4 & cout[15];
+   assign sum = cout ^ a ^ b;
+
+
    
 
 endmodule

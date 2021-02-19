@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# xsim v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Feb 19 16:46:19 2021
+# Process ID: 23419
+# Current directory: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu
+# Command line: xsim -mode tcl -source {xsim.dir/snapshot.sim/xsim_script.tcl}
+# Log file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.log
+# Journal file: /mnt/castor/seas_home/f/fatiho/lc4-labs/lab2b-alu/xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/snapshot.sim/xsim_script.tcl
+# xsim {snapshot.sim} -wdb {sim.wdb} -autoloadwcfg -runall -stats
+Vivado Simulator 2017.4
+Time resolution is 1 ps
+run -all
+[cla] error a:34485 + b: 9098 + cin:0 = sum:43071 instead of 43583
+[cla] error a: 1595 + b:38565 + cin:1 = sum:48353 instead of 40161
+[cla] error a: 5173 + b:40163 + cin:0 = sum:45368 instead of 45336
+[cla] error a: 3223 + b:56732 + cin:0 = sum:59443 instead of 59955
+[cla] error a:12964 + b:33076 + cin:0 = sum:46072 instead of 46040
+[cla] error a:31511 + b:10485 + cin:0 = sum:33804 instead of 41996
+[cla] error a:30882 + b:52012 + cin:1 = sum: 9167 instead of 17359
+[cla] error a:56447 + b:39269 + cin:1 = sum:30693 instead of 30181
+[cla] error a:56673 + b:59934 + cin:1 = sum:51584 instead of 51072
+[cla] error a:16712 + b:22317 + cin:1 = sum:47222 instead of 39030
+[cla] error a:59004 + b:49990 + cin:1 = sum:43971 instead of 43459
+[cla] error a: 4399 + b:34680 + cin:1 = sum:47272 instead of 39080
+[cla] error a:23655 + b:25654 + cin:1 = sum:49342 instead of 49310
+[cla] error a:26212 + b:31007 + cin:1 = sum:57732 instead of 57220
+[cla] error a:42705 + b: 8423 + cin:1 = sum:51161 instead of 51129
+exit
+INFO: Simulation Memory Usage: 118040 KB (Peak: 179476 KB)
+INFO: Simulation CPU Usage: 40 ms
+INFO: [Common 17-206] Exiting xsim at Fri Feb 19 16:46:26 2021...
